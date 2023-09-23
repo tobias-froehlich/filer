@@ -6,7 +6,7 @@ from Backend import Backend
 from addAYear import addAYear
 from chooseAYear import chooseAYear
 from showTags import showTags
-from addATag import addATag
+from addANewTag import addANewTag
 from addTagsFromAnotherYear import addTagsFromAnotherYear
 
 def frontend():
@@ -64,7 +64,7 @@ The file ~/filer.conf is missing. It must contain for example the following cont
             showTags(backend, activeYear)
         elif activeYear and i == 'e':
             os.system('clear')
-            addATag(backend, activeYear)
+            addANewTag(backend, activeYear)
         elif activeYear and i == 'f':
             os.system('clear')
             addTagsFromAnotherYear(backend, activeYear)
