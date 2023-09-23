@@ -7,6 +7,7 @@ from addAYear import addAYear
 from chooseAYear import chooseAYear
 from showTags import showTags
 from addATag import addATag
+from addTagsFromAnotherYear import addTagsFromAnotherYear
 
 def frontend():
     if not os.path.isfile(os.path.expanduser('~/filer.conf')):
@@ -33,6 +34,7 @@ The file ~/filer.conf is missing. It must contain for example the following cont
         c:    add a year
         d:    show tags
         e:    add a tag
+        f:    add tags from another year
         quit: quit
     """.format(latestYear = max(backend.getYears()))
         else:
@@ -63,6 +65,9 @@ The file ~/filer.conf is missing. It must contain for example the following cont
         elif activeYear and i == 'e':
             os.system('clear')
             addATag(backend, activeYear)
+        elif activeYear and i == 'f':
+            os.system('clear')
+            addTagsFromAnotherYear(backend, activeYear)
         elif i == 'quit':
             quit = True
         else:

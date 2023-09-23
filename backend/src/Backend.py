@@ -83,5 +83,5 @@ class Backend:
                         raise Exception(
                         f"Tags \"{tag['name']}\" of year {tag['year']} and \"{otherTag['name']}\" of year {otherTag['year']} have the same name but different IDs."
                         )
-            tags.append(tag)
+                tags.append(tag)
  

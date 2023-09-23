@@ -48,6 +48,12 @@ def testLoadDataWhenDirectoryHasOneFile():
     assert backend.getYearData(2023).getTagName('6bb5dd6a-923a-4714-9255-fb0bcc0a10ac') == 'Tag 2'
 testLoadDataWhenDirectoryHasOneFile()
 
+def loadDataWhenYearHasNoTags():
+    clean()
+    shutil.copy('testfiles/2023_noTags.txt', '/tmp/filertest/2023.txt')
+    backend = Backend('/tmp/filertest') 
+loadDataWhenYearHasNoTags()
+
 def testValidationWhenYearsHaveTagsWithSameIdButDifferentName():
     clean()
     shutil.copy('testfiles/tagsWithSameIdButDifferentName/2022.txt', '/tmp/filertest/2022.txt')

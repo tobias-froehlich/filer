@@ -1,7 +1,7 @@
 import os
 from chooseAYear import chooseAYear
 
-def addATagFromAnotherYear(backend, activeYear):
+def addTagsFromAnotherYear(backend, activeYear):
     
     otherYear = chooseAYear(backend)
 
@@ -13,11 +13,18 @@ def addATagFromAnotherYear(backend, activeYear):
 
     tagIds = backend.getYearData(otherYear).getTagIds()
     tagNames = [backend.getYearData(otherYear).getTagName(id) for id in tagIds]
+    tagSelected = [False] * len(tagIds)
+
+    def getCheckbox(value):
+        if value:
+            return '[x]'
+        else:
+            return '[ ]'
 
     liste = ''
     i = 1
     for tagName in tagNames:
-        liste += '    {i}: {name}\n'.format(i = i, name = tagName)
+        liste += f'    {i} {getCheckbox(tagSelected[i - 1])}: {tagName}\n'
         i += 1
  
     menu = \
