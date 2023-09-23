@@ -19,13 +19,20 @@ def addATagFromAnotherYear(backend, activeYear):
     for tagName in tagNames:
         liste += '    {i}: {name}\n'.format(i = i, name = tagName)
         i += 1
- 
-    menu = \
-    """
-Choose a tag from the year {otherYear} and add it to the year {activeYear}:
+
+    if len(tagNames) > 0: 
+        menu = \
+        """
+    Choose a tag from the year {otherYear} and add it to the year {activeYear}:
 {liste}        
-        quit:        quit
-    """.format(otherYear = otherYear, activeYear = activeYear, liste = liste)
+            quit:        quit
+        """.format(otherYear = otherYear, activeYear = activeYear, liste = liste)
+    else:
+        menu = \
+        f"""
+    The year {otherYear} has no tags.
+            quit: quit
+        """
     
     os.system('clear')
     while not quit:

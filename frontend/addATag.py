@@ -21,10 +21,10 @@ def addATag(backend, activeYear):
         if i == 'a':
            addATagFromAnotherYear(backend, activeYear)
            quit = True
-        if i == 'b':
+        elif i == 'b':
            addANewTag(backend, activeYear)
         elif i == 'quit':
             quit = True
         else:
-            print('Invalid input')
+            print('Invalid input bla')
     
