@@ -1,0 +1,13 @@
+{
+    "year": 2022,
+    "tags": [
+       {
+           "id": "eb69474c-ce4f-44e7-a8c6-c314c50521c0",
+           "name": "Tag 1"
+       },
+       {
+           "id": "6bb5dd6a-923a-4714-9255-fb0bcc0a10ac",
+           "name": "Tag 2"
+       }
+    ]
+}

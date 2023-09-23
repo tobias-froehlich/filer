@@ -22,6 +22,7 @@ class Backend:
             yearData = YearData(year)
             yearData.fromJson(jsonString)
             self.__yearDatas[year] = yearData
+        self.validate()
 
     def save(self, year):
         if year not in self.__yearDatas.keys():
@@ -46,3 +47,41 @@ class Backend:
         if year not in self.__yearDatas.keys():
             raise Exception('Year ' + str(year) + ' does not exist.')
         return self.__yearDatas[year]
+
+
+    def validate(self):
+        self.validateThatThereAreNoTagsWithDifferentNameButSameId()
+        self.validateThatThereAreNoTagsWithDifferentIdButSameName()
+
+    def validateThatThereAreNoTagsWithDifferentNameButSameId(self):
+        tags = []
+        for year in self.__yearDatas.keys():
+            yearData = self.__yearDatas[year]
+            tagIds = yearData.getTagIds()
+            for tagId in tagIds:
+                tagName = yearData.getTagName(tagId)
+                tag = {'id': tagId, 'name': tagName, 'year': year}
+                for otherTag in tags:
+                    if tag['id'] == otherTag['id'] \
+                        and tag['name'] != otherTag['name']:
+                        raise Exception(
+                        f"Tags \"{tag['name']}\" of year {tag['year']} and \"{otherTag['name']}\" of year {otherTag['year']} have the same ID."
+                        )
+                tags.append(tag)
+
+    def validateThatThereAreNoTagsWithDifferentIdButSameName(self):
+        tags = []
+        for year in self.__yearDatas.keys():
+            yearData = self.__yearDatas[year]
+            tagIds = yearData.getTagIds()
+            for tagId in tagIds:
+                tagName = yearData.getTagName(tagId)
+                tag = {'id': tagId, 'name': tagName, 'year': year}
+                for otherTag in tags:
+                    if tag['name'] == otherTag['name'] \
+                        and tag['id'] != otherTag['id']:
+                        raise Exception(
+                        f"Tags \"{tag['name']}\" of year {tag['year']} and \"{otherTag['name']}\" of year {otherTag['year']} have the same name but different IDs."
+                        )
+            tags.append(tag)
+ 

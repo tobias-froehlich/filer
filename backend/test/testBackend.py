@@ -48,6 +48,22 @@ def testLoadDataWhenDirectoryHasOneFile():
     assert backend.getYearData(2023).getTagName('6bb5dd6a-923a-4714-9255-fb0bcc0a10ac') == 'Tag 2'
 testLoadDataWhenDirectoryHasOneFile()
 
+def testValidationWhenYearsHaveTagsWithSameIdButDifferentName():
+    clean()
+    shutil.copy('testfiles/tagsWithSameIdButDifferentName/2022.txt', '/tmp/filertest/2022.txt')
+    shutil.copy('testfiles/tagsWithSameIdButDifferentName/2023.txt', '/tmp/filertest/2023.txt')
+    assertThatRaisedBy(lambda: Backend('/tmp/filertest'), 'Tags "Tag 3" of year 2023 and "Tag 2" of year 2022 have the same ID.')
+
+testValidationWhenYearsHaveTagsWithSameIdButDifferentName()
+    
+def testValidationWhenYearsHaveTagsWithSameNameButDifferentIds():
+    clean()
+    shutil.copy('testfiles/tagsWithSameNameButDifferentIds/2022.txt', '/tmp/filertest/2022.txt')
+    shutil.copy('testfiles/tagsWithSameNameButDifferentIds/2023.txt', '/tmp/filertest/2023.txt')
+    assertThatRaisedBy(lambda: Backend('/tmp/filertest'), 'Tags "Tag 2" of year 2023 and "Tag 2" of year 2022 have the same name but different IDs.')
+
+testValidationWhenYearsHaveTagsWithSameNameButDifferentIds()
+
 def testAddYearThatAlreadyExists():
     clean()
     shutil.copy('testfiles/2023.txt', '/tmp/filertest/2023.txt')
