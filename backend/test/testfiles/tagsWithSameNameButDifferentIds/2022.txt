@@ -9,5 +9,6 @@
            "id": "6bb5dd6a-923a-4714-9255-fb0bcc0a10ac",
            "name": "Tag 2"
        }
-    ]
+    ],
+    "documents": []
 }

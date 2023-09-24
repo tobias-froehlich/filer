@@ -102,6 +102,7 @@ def testSaveYear():
         data = f.read()
     assert data == """{
     "year": 2024,
-    "tags": []
+    "tags": [],
+    "documents": []
 }"""
 testSaveYear()
